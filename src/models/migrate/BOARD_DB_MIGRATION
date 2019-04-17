@@ -1,0 +1,37 @@
+#게시판 디비 정보
+
+create table `boards` (
+    `idx` int(10) not null auto_increment,
+    `user_id` varchar(40) not null,
+    `subject` varchar(50) not null,
+    `content` text not null,
+    `updated_at` datetime null,
+    `created_at` datetime null,
+    primary key(`idx`)
+) comment= 'API 게시판 관리'
+collate='utf8_general_ci'
+engine=MyISAM
+
+
+#테스트 데이터 생성
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser', '제목0', '내용0', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser', '제목1', '내용1', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser', '제목2', '내용2', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser', '제목3', '내용3', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser', '제목4', '내용4', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser', '제목5', '내용5', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser', '제목6', '내용6', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser', '제목7', '내용7', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser', '제목8', '내용8', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser', '제목9', '내용9', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser', '제목10', '내용10', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser', '제목11', '내용11', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser2', '제목12', '내용12', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser2', '제목13', '내용13', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser2', '제목14', '내용14', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser2', '제목15', '내용15', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser2', '제목16', '내용16', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser2', '제목17', '내용17', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser2', '제목18', '내용18', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+INSERT INTO `boards` (`user_id`, `subject`, `content`, `updated_at`, `create_at`) VALUES ( 'testuser2', '제목19', '내용19', '2019-04-17 19:27:00', '2019-04-17 19:27:00');
+

@@ -1,0 +1,20 @@
+# 유저정보 생성
+
+create table `users` (
+	`idx` int(10) not null auto_increment,
+	`user_id` varchar(40) not null,
+	`password` varchar(200) not null,
+	`name` varchar(50) not null,
+	primary key(`idx`)
+)
+comment= 'API 회원관리'
+collate='utf8_general_ci'
+engine=MyISAM
+
+
+
+# 라라벨 데이터방식을 사용하는데 기본적으로 컬럼에 아래와 같은 내용을 추가해야한다.
+# 만약 사용하고 싶지 않으면 Model/user.php 에서 $timestamps = false 를 활성화 한다.
+
+ALTER TABLE `users` ADD (`updated_at` DATETIME);
+ALTER TABLE `users` ADD (`created_at` DATETIME);
