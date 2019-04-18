@@ -13,7 +13,7 @@ engine=MyISAM
 
 
 
-# 라라벨 데이터방식을 사용하는데 기본적으로 컬럼에 아래와 같은 내용을 추가해야한다.
+# 라라벨 데이터방식 illuminate/database 을 사용하는데 기본적으로 컬럼에 아래와 같은 내용을 추가해야한다.
 # 만약 사용하고 싶지 않으면 Model/user.php 에서 $timestamps = false 를 활성화 한다.
 
 ALTER TABLE `users` ADD (`updated_at` DATETIME);
