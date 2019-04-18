@@ -1,12 +1,12 @@
 # slim_rest
 
-### URL 유저 관리
+### [URL] 유저 관리
 	1. [POST]  http://127.0.0.1/api/user/main      회원가입
 	2. [PUT]   http://127.0.0.1/api/user/main      회원정보 수정
 	3. [POST]  http://127.0.0.1/api/user/login     로그인
 	4. [GET]   http://127.0.0.1/api/user/logout    로그아웃
  
-### URL 게시물 관리
+### [URL] 게시물 관리
 	1. [GET]   http://127.0.0.1/api/board/list/1   게시물 목록
 	2. [GET]   http://127.0.0.1/api/board/1        게시물 상세
 	3. [POST]  http://127.0.0.1/api/board/main     게시물 등록
