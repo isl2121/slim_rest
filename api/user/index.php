@@ -6,8 +6,8 @@ $app->group('/user', function ($app) {
     #$app->get('/hello', 'hello');         #데이터베이스 검사용
     
     $app->post('/main', 'insertUser');     # 유저 생성     : METHOD [POST] | URL [ api/user/main ]  | @param [ user_id, name, password ]
-    $app->post('/login', 'selectUser');    # 유저 조회     : METHOD [POST] | URL [ api/user/main ]. | @param [ user_id, password ]
     $app->put('/main', 'updateUser');      # 유저 변경     : METHOD [PUT]  | URL [ api/user/main ]  | @param [ name ]
+    $app->post('/login', 'selectUser');    # 유저 조회     : METHOD [POST] | URL [ api/user/login ].| @param [ user_id, password ]
     $app->get('/logout', 'logoutUser');    # 유저 로그아웃 : METHOD [GET]  | URL [ api/user/logout ]
 
 });
@@ -76,10 +76,11 @@ $app->group('/user', function ($app) {
             $data['msg'] = "아이디와 비밀번호를 확인하여 주십시요.";
         }
         
-        
         #유저 생성 실패
         return $response->withJson($data, 200);
     };
+    
+    
     
     /*   selectUser - 유저 로그인 페이지
      *   method POST
@@ -109,6 +110,7 @@ $app->group('/user', function ($app) {
         
         return $response->withJson($data, 200);
     };
+    
     
     /*   updateUser - 유저 정보 수정 페이지
      *   기본적으로 아이디는 변경하지 않음   
@@ -163,7 +165,6 @@ $app->group('/user', function ($app) {
         }
 
         return $response->withJson($data, 200);
-
     };
     
     

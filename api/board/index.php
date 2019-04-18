@@ -5,7 +5,7 @@ $app->group('/board', function ($app) {
 
     $app->get('/list/{page}',  'listBoard');            # 게시판 페이지 조회   : METHOD [GET]  | URL [ api/board/list/{page} ]
     $app->get('/{idx}', 'selectBoard');                 # 단일 게시물 조회     : METHOD [GET]  | URL [ api/board/{idx} ]
-    $app->post('/main', 'insertBoard');                 # 게시물 생성          : METHOD [POST] | URL [ api/board ]            | @param [ subject, content ]
+    $app->post('/main', 'insertBoard');                 # 게시물 생성          : METHOD [POST] | URL [ api/board/main ]       | @param [ subject, content ]
     $app->put('/{idx}', 'updateBoard');                 # 게시물 변경          : METHOD [PUT]  | URL [ api/board/{idx} ]      | @param [ subject, content ]
     $app->delete('/{idx}', 'deleteBoard');              # 게시물 삭제          : METHOD [DELTE]| URL [ api/board/{idx} ]
 
@@ -48,8 +48,8 @@ $app->group('/board', function ($app) {
         }
 
         return $response->withJson($data, 200);
-
     };
+    
     
     /*  selectBoard - 게시물 조회
     *   method GET
@@ -70,6 +70,7 @@ $app->group('/board', function ($app) {
 
         return $response->withJson($data, 200);
     };
+    
     
     /*  insertBoard - 게시물 생성
     *   method POST
@@ -112,10 +113,10 @@ $app->group('/board', function ($app) {
                 $data['res'] = false;
                 $data['msg'] = "제목과 내용을 확인해주십시요.";
             }
-
         }
         return $response->withJson($data, 200);
     };
+    
     
     /*  updateBoard - 게시물 변경
     *   method PUT
@@ -171,11 +172,11 @@ $app->group('/board', function ($app) {
         }
     }; 
     
+    
     /*  deleteBoard - 게시물 삭제
     *   method DELETE
     *   @attr int /idx
     */
-    
     function deleteBoard ($request, $response, $args)
     {
         $session = new \Adbar\Session;
