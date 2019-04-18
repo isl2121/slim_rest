@@ -26,6 +26,6 @@
 ![테스트환경](https://user-images.githubusercontent.com/11622241/56328083-4e79e980-61b8-11e9-8c17-af1e137f8e8a.png)
 
 ##### 테스트시 주의사항 put 을 사용할경우 body에서 form-data 가 아닌 x-www-form-urlencoded 로 설정하고 테스트해야함
-##### 참고 : https://stackoverflow.com/questions/23761425/get-put-params-with-slim-php
+##### 참고 : https://stackoverflow.com/a/26752693
 
 ##### 테스트시 src/config.php -> $settings['settings']['db'] 정보 수정후 진행요청
