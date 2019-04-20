@@ -5,9 +5,9 @@ $app->group('/user', function ($app) {
     
     #$app->get('/hello', 'hello');         #데이터베이스 검사용
     
-    $app->post('/main', 'insertUser')->setName('user.insert');     # 유저 생성     : METHOD [POST] | URL [ api/user/main ]  | @param [ user_id, name, password ]
-    $app->put('/main', 'updateUser')->setName('user.update');      # 유저 변경     : METHOD [PUT]  | URL [ api/user/main ]  | @param [ name ]
-    $app->post('/login', 'selectUser')->setName('user.select');    # 유저 조회     : METHOD [POST] | URL [ api/user/login ].| @param [ user_id, password ]
+    $app->post('/main', 'insertUser');     # 유저 생성     : METHOD [POST] | URL [ api/user/main ]  | @param [ user_id, name, password ]
+    $app->put('/main', 'updateUser');      # 유저 변경     : METHOD [PUT]  | URL [ api/user/main ]  | @param [ name ]
+    $app->post('/login', 'selectUser');   # 유저 조회     : METHOD [POST] | URL [ api/user/login ].| @param [ user_id, password ]
     $app->get('/logout', 'logoutUser')->setName('user.logout');    # 유저 로그아웃 : METHOD [GET]  | URL [ api/user/logout ]
 
 });

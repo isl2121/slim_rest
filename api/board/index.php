@@ -5,9 +5,9 @@ $app->group('/board', function ($app) {
 
     $app->get('/list/{page}',  'listBoard')->setName('boards.list');    	      # 게시판 페이지 조회   : METHOD [GET]  | URL [ api/board/list/{page} ]
     $app->get('/{idx}', 'selectBoard')->setName('boards.select');                 # 단일 게시물 조회     : METHOD [GET]  | URL [ api/board/{idx} ]
-    $app->post('/main', 'insertBoard')->setName('baords.insert');                 # 게시물 생성          : METHOD [POST] | URL [ api/board/main ]       | @param [ subject, content ]
-    $app->put('/{idx}', 'updateBoard')->setName('boards.put');       	          # 게시물 변경          : METHOD [PUT]  | URL [ api/board/{idx} ]      | @param [ subject, content ]
-    $app->delete('/{idx}', 'deleteBoard')->setName('boards.delete');              # 게시물 삭제          : METHOD [DELTE]| URL [ api/board/{idx} ]
+    $app->post('/main', 'insertBoard');                 # 게시물 생성          : METHOD [POST] | URL [ api/board/main ]       | @param [ subject, content ]
+    $app->put('/{idx}', 'updateBoard');       	          # 게시물 변경          : METHOD [PUT]  | URL [ api/board/{idx} ]      | @param [ subject, content ]
+    $app->delete('/{idx}', 'deleteBoard');             # 게시물 삭제          : METHOD [DELTE]| URL [ api/board/{idx} ]
 
 });
 
