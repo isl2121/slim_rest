@@ -20,7 +20,24 @@ require '../src/models/board.php';
 $app = new \Slim\App($settings);
 $app->add(new \Adbar\SessionMiddleware($settings['session']));
 
+
+// Fetch DI Container
 $container = $app->getContainer();
+
+
+$container['view'] = function ($container) {
+    $view = new \Slim\Views\Twig('path/to/templates', [
+        'cache' => false
+    ]);
+    
+    // Instantiate and add Slim specific extension
+    $router = $c->get('router');
+    $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
+    $view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
+
+    return $view;
+};
+
 
 $capsule = new Capsule;
 
