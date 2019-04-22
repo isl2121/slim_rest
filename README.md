@@ -1,4 +1,5 @@
-# slim_rest
+# 사용중지 공부후 재배포 예정
+
 
 ### [URL] 유저 관리
 	1. [POST]  http://127.0.0.1/api/user/main      회원가입
