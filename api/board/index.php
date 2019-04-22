@@ -26,7 +26,7 @@ $app->group('/board', function ($app) {
     */
     function listBoard ($request, $response, $args)
     {
-        $page = $request->getAttribute('page');
+        $page = $args['page'];
 
         #만약에 문자형을 받는다면 기본값으로 1페이지를 보여준다.
         if ( !is_int($page) ) {
@@ -57,7 +57,7 @@ $app->group('/board', function ($app) {
     */
     function selectBoard ($request, $response, $args)
     {
-        $idx = $request->getAttribute('idx');
+        $idx = $args['idx'];
         $result = Board::where('idx',$idx)->first();
         
         if ( $result ) {
@@ -77,7 +77,7 @@ $app->group('/board', function ($app) {
     *   @parram str subject
     *   @parram str content
     */
-    function insertBoard ($request, $response, $args)
+    function insertBoard ($request, $response)
     {
         $session = new \Adbar\Session;
         $user = $session->get('user');
@@ -136,7 +136,7 @@ $app->group('/board', function ($app) {
             return $response->withJson($data, 401);           
         } else {
             
-            $idx =  $request->getAttribute('idx'); 
+            $idx =  $args['idx']; 
             $result = Board::where('idx',$idx)->first();
             
             # 게시물이 존재하는지 먼저 확인
@@ -189,7 +189,7 @@ $app->group('/board', function ($app) {
             return $response->withJson($data, 401);
         } else {
             
-            $idx = $request->getAttribute('idx');
+            $idx = $args['idx'];
             $result = Board::where('idx',$idx)->first();      
             
             # 존재하는 게시물인지 검사

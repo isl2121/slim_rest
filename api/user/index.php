@@ -29,7 +29,7 @@ $app->group('/user', function ($app) {
      *   @param string $name
      *   @param string $password
     */
-    function insertUser ($request, $response, $args)
+    function insertUser ($request, $response)
     {
         $user_id    = $request->getParam('user_id');
         $name       = $request->getParam('name');
@@ -87,7 +87,7 @@ $app->group('/user', function ($app) {
      *   @param string $user_id
      *   @param string $password
     */
-    function selectUser ($request, $response, $args)
+    function selectUser ($request, $response)
     {   
         $user_id = $request->getParam('user_id');
         $password = $request->getParam('password');
@@ -118,7 +118,7 @@ $app->group('/user', function ($app) {
      *   @param string $name
      *   @param string $password
     */
-    function updateUser ($request, $response, $args)
+    function updateUser ($request, $response)
     {
         $session = new \Adbar\Session;
         $user = $session->get('user');
@@ -172,7 +172,7 @@ $app->group('/user', function ($app) {
      *  개발중 로그아웃이 필요해 제작
      *  method GET
     */
-    function logoutUser ($request, $response, $args)
+    function logoutUser ($request, $response)
     {
         $session = new \Adbar\Session;
         $user = $session->get('user');
