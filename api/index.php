@@ -44,6 +44,11 @@ $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
 
+$container['db'] = function ($container) use ($capsule){
+   return $capsule;
+};
+
+
 
 # 유저 생성, 조회->로그인, 수정 | 과제에서 유저 삭제에 대한 요청이 없어 제작 안함
 require __DIR__ .'/../routes/user/index.php';

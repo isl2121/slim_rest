@@ -4,7 +4,7 @@
 	
 	use App\Models\Board;
 	
-	class BoardController
+	class BoardController extends Controller
 	{
 		/*  listBoard - 게시판 조회
 	    *   method GET
@@ -12,6 +12,7 @@
 	    */
 	    public function listBoard ($request, $response, $args)
 	    {
+		    
 	        $page = $args['page'];
 	
 	        #만약에 문자형을 받는다면 기본값으로 1페이지를 보여준다.
@@ -33,7 +34,7 @@
 	            $data['msg'] = "데이터 조회에 실패하였습니다.";
 	        }
 	
-	        return $response->withJson($data, 200);
+	        return $this->c->response->withJson($result, 200);
 	    }
 	    
 	    
@@ -44,17 +45,10 @@
 	    public function selectBoard ($request, $response, $args)
 	    {
 	        $idx = $args['idx'];
-	        $result = Board::where('idx',$idx)->first();
-	        
-	        if ( $result ) {
-	            $data['res'] = true; 
-	            $data['data'] = $result;
-	        } else {
-	            $data['res'] = false;
-	            $data['msg'] = "데이터 조회에 실패하였습니다.";
-	        }
+
+	        $result = $this->select_board($idx);
 	
-	        return $response->withJson($data, 200);
+	        return $this->c->response->withJson($result, 200);
 	    }
 	    
 	    
@@ -67,12 +61,12 @@
 	    {
 	        $session = new \Adbar\Session;
 	        $user = $session->get('user');
-	                
+	        
+	        $is_login = $this->is_login();    
+	        
 	        #세션 먼저 검사
-	        if ( !$user ) {
-	            $data['res'] = false;
-	            $data['msg'] = "로그인한 유저만 글쓰기가 가능합니다";
-	            return $response->withJson($data, 401);
+	        if ( !$is_login['res'] ) {
+	            return $this->c->response->withJson($is_login, 401);
 	        } else {
 	            
 	              $subject = $request->getParam('subject');
@@ -89,7 +83,7 @@
 	                if ( $result ) {
 	                    $data['res'] = true;
 	                    $data['msg'] = "성공적으로 등록되었습니다.";
-	                    return $response->withJson($data, 201);
+	                    return $this->c->response->withJson($data, 201);
 	                } else {
 	                    $data['res'] = false;
 	                    $data['msg'] = "글 등록에 실패하였습니다.";                    
@@ -100,7 +94,7 @@
 	                $data['msg'] = "제목과 내용을 확인해주십시요.";
 	            }
 	        }
-	        return $response->withJson($data, 200);
+	        return $this->c->response->withJson($data, 200);
 	    }
 	    
 	    
@@ -115,25 +109,23 @@
 	        $session = new \Adbar\Session;
 	        $user = $session->get('user');
 	        
+	        $is_login = $this->is_login();    
+	        
 	        #세션 먼저 검사
-	        if ( !$user ) {
-	            $data['res'] = false;
-	            $data['msg'] = "로그인한 유저만 수정이 가능합니다.";
-	            return $response->withJson($data, 401);           
+	        if ( !$is_login['res'] ) {
+	            return $this->c->response->withJson($is_login, 401);
 	        } else {
-	            
-	            $idx =  $args['idx']; 
-	            $result = Board::where('idx',$idx)->first();
-	            
-	            # 게시물이 존재하는지 먼저 확인
-	            if ($result == null) {
-	                $data['res'] = false;
-	                $data['msg'] = "해당 게시판을 조회할수 없습니다.";
-	                return $response->withJson($data, 401);
+
+		        $idx = $args['idx'];
+	            $idx_result = $this->select_board($idx);
+	         	
+	         	# 게시물이 존재하는지 먼저 확인
+	            if ($idx_result['res'] != true) {
+	                return $this->c->response->withJson($idx_result, 401);
 	            }
-	            
+				
 	            #해당 게시물을 본인이 작성하였는지 확인
-	            if ($user->user_id == $result->user_id ) {
+	            if ($user->user_id == $idx_result['data']->user_id ) {
 	                
 	                $update_data['subject'] = $request->getParam('subject');
 	                $update_data['content'] = $request->getParam('content');
@@ -148,12 +140,12 @@
 	                    $data['msg'] = "수정에 실패하였습니다.";
 	                }
 	                
-	                return $response->withJson($data, 200);
+	                return $this->c->response->withJson($data, 200);
 	                
 	            } else {
 	                $data['res'] = false;
 	                $data['msg'] = "본인만 수정이 가능합니다.";
-	                return $response->withJson($data, 401);      
+	                return $this->c->response->withJson($data, 401);      
 	            }
 	        }
 	    }
@@ -168,21 +160,19 @@
 	        $session = new \Adbar\Session;
 	        $user = $session->get('user');
 	        
+	        $is_login = $this->is_login();    
+	        
 	        #세션 먼저 검사
-	        if ( !$user ) {            
-	            $data['res'] = false;
-	            $data['msg'] = "로그인한 유저만 수정이 가능합니다.";
-	            return $response->withJson($data, 401);
+	        if ( !$is_login['res'] ) {
+	            return $this->c->response->withJson($is_login, 401);
 	        } else {
 	            
-	            $idx = $args['idx'];
-	            $result = Board::where('idx',$idx)->first();      
-	            
-	            # 존재하는 게시물인지 검사
-	            if ($result == null) {
-	                $data['res'] = false;
-	                $data['msg'] = "해당 게시판을 조회할수 없습니다.";
-	                return $response->withJson($data, 401);
+		        $idx = $args['idx'];
+	            $idx_result = $this->select_board($idx);
+	         	
+	         	# 게시물이 존재하는지 먼저 확인
+	            if ($idx_result['res'] != true) {
+	                return $this->c->response->withJson($idx_result, 401);
 	            }
 	
 	            # 본인이 업로드한 게시물인지 검사
@@ -195,12 +185,12 @@
 	                    $data['res'] = false;
 	                    $data['msg'] = "삭제에 실패하였습니다.";
 	                }
-	                
-	                return $response->withJson($data, 200);
+
+	                return $this->c->response->withJson($data, 200);
 	            } else {
 	                $data['res'] = false;
 	                $data['msg'] = "본인만 삭제가 가능합니다.";
-	                return $response->withJson($data, 401);                
+	                return $this->c->response->withJson($data, 401);                
 	            }    
 	        }
 	                    

@@ -48,7 +48,7 @@
 	                   $data['msg'] = "성공적으로 생성되었습니다.";
 	                   
 	                   #rest api 에서는 리소스가 생성되었을때는 201을 return 하는걸 권장
-	                   return $response->withJson($data, 201);
+	                   return $this->c->response->withJson($data, 201);
 	               } else {
 	                   $data['res'] = false;
 	                   $data['msg'] = "유저 생성에 실패하였습니다.";
@@ -60,7 +60,7 @@
 	        }
 	        
 	        #유저 생성 실패
-	        return $response->withJson($data, 200);
+	        return $this->c->response->withJson($data, 200);
 	    }
 	    
 	    /*   selectUser - 유저 로그인 페이지
@@ -89,7 +89,7 @@
 	            $data['msg'] = "로그인에 실패하였습니다.";            
 	        }
 	        
-	        return $response->withJson($data, 200);
+	        return $this->c->response->withJson($data, 200);
 	    }
 	    
 	    
@@ -118,7 +118,7 @@
 	                } else {
 	                    $data['result'] = false;
 	                    $data['msg'] = "비밀번호가 올바르지 않습니다.";
-	                    return $response->withJson($data, 200);
+	                    return $this->c->response->withJson($data, 200);
 	                }
 	            } else {
 	                $update_data['password'] = $user->password;
@@ -142,10 +142,10 @@
 	        } else {
 	            $data['result'] = false;
 	            $data['msg'] = "로그인 되지 않았습니다.";
-	            return $response->withJson($data, 401);
+	            return $this->c->response->withJson($data, 401);
 	        }
 	
-	        return $response->withJson($data, 200);
+	        return $this->c->response->withJson($data, 200);
 	    }
 	    
 	    
@@ -162,11 +162,11 @@
 	            $session->clear();
 	            $data['result'] = true;
 	            $data['msg'] = '로그아웃 되었습니다.';
-	            return $response->withJson($data, 200);
+	            return $this->c->response->withJson($data, 200);
 	        } else {
 	            $data['result'] = false;
 	            $data['msg'] = "로그인 되지 않았습니다.";
-	            return $response->withJson($data, 401);
+	            return $this->c->response->withJson($data, 401);
 	        }
 	    }
     
