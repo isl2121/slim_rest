@@ -156,9 +156,9 @@
 	    public function logoutUser ($request, $response)
 	    {
 	        $session = new \Adbar\Session;
-	        $user = $session->get('user');
+	        $is_login = $this->is_login();
 	        
-	        if ($user) {
+	        if ( !$is_login['res'] ) {
 	            $session->clear();
 	            $data['result'] = true;
 	            $data['msg'] = '로그아웃 되었습니다.';

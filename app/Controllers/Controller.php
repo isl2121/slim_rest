@@ -45,4 +45,10 @@
 	        
 	        return $data;
 		}
+		/*
+		protected function render404()
+		{
+			return $this->c->view->render($response->withStatus(404));
+		}
+		*/
 	}

@@ -157,8 +157,7 @@
 	    */
 	    public function deleteBoard ($request, $response, $args)
 	    {
-	        $session = new \Adbar\Session;
-	        $user = $session->get('user');
+
 	        
 	        $is_login = $this->is_login();    
 	        
