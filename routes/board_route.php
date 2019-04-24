@@ -4,6 +4,7 @@ use App\Models\Board;
 use App\Controllers\BoardController;
 use App\Middleware\IsLogin;
 
+# 로그인 불필요 URL
 $app->group('/board', function () {
     #$this->get('/hello', 'hello_2');																		# 데이터베이스 연결 확인용
     $this->get('/list/{page}',  BoardController::class . ':listBoard')->setName('boards.list');    	      	# 게시판 페이지 조회   : METHOD [GET]  | URL [ api/board/list/{page} ]
