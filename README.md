@@ -14,8 +14,8 @@
 	
 * 데이터베이스 마이그레이션
     ```
-    /src/models/migrate/USER_DB_MIGRATION    회원정보
-    /src/models/migrate/BOARD_DB_MIGRATION   게시물
+    /app/models/migrate/USER_DB_MIGRATION    회원정보
+    /app/models/migrate/BOARD_DB_MIGRATION   게시물
     ```
 
 
