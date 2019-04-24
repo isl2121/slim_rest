@@ -14,8 +14,8 @@
 	
 * 데이터베이스 마이그레이션
     ```
-    /src/models/migrate/USER_DB_MIGRATION    회원정보
-    /src/models/migrate/BOARD_DB_MIGRATION   게시물
+    /app/models/migrate/USER_DB_MIGRATION    회원정보
+    /app/models/migrate/BOARD_DB_MIGRATION   게시물
     ```
 
 
@@ -30,5 +30,5 @@
 ##### 테스트시 src/config.php -> $settings['settings']['db'] 정보 수정후 진행요청
 
 
-### 참고중인 동영상 강의		https://www.youtube.com/playlist?list=PLiVYpIYuvFOUDQPZ2fZdVvk1VYrbgmq67
-### 나중에 추가 공부해야할 		URL https://restapitutorial.com/httpstatuscodes.html
+##### 참고중인 동영상 강의		https://www.youtube.com/playlist?list=PLiVYpIYuvFOUDQPZ2fZdVvk1VYrbgmq67
+##### 나중에 추가 공부해야할 		URL https://restapitutorial.com/httpstatuscodes.html

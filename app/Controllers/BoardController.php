@@ -45,9 +45,7 @@
 	    public function selectBoard ($request, $response, $args)
 	    {
 	        $idx = $args['idx'];
-
 	        $result = $this->select_board($idx);
-	
 	        return $this->c->response->withJson($result, 200);
 	    }
 	    
@@ -62,30 +60,30 @@
 	        $session = new \Adbar\Session;
 	        $user = $session->get('user');
 	                    
-            $subject = $request->getParam('subject');
-            $content = $request->getParam('content');
+	    	$subject = $request->getParam('subject');
+			$content = $request->getParam('content');
 
-            #제목과 내용 있는지 검사            
-            if (strlen(trim($subject)) > 0 && strlen(trim($content))) {
-                $board = new Board();
-                $board->user_id = $user->user_id;
-                $board->subject = $subject;
-                $board->content = $content;
-                $result = $board->save();
+			#제목과 내용 있는지 검사            
+			if (strlen(trim($subject)) > 0 && strlen(trim($content))) {
+				$board = new Board();
+				$board->user_id = $user->user_id;
+				$board->subject = $subject;
+				$board->content = $content;
+				$result = $board->save();
 
-                if ( $result ) {
-                    $data['res'] = true;
-                    $data['msg'] = "성공적으로 등록되었습니다.";
-                    return $this->c->response->withJson($data, 201);
-                } else {
-                    $data['res'] = false;
-                    $data['msg'] = "글 등록에 실패하였습니다.";                    
-                }
+				if ( $result ) {
+					$data['res'] = true;
+					$data['msg'] = "성공적으로 등록되었습니다.";
+					return $this->c->response->withJson($data, 201);
+				} else {
+					$data['res'] = false;
+					$data['msg'] = "글 등록에 실패하였습니다.";                    
+				}
 
-            } else {
-                $data['res'] = false;
-                $data['msg'] = "제목과 내용을 확인해주십시요.";
-            }
+			} else {
+				$data['res'] = false;
+				$data['msg'] = "제목과 내용을 확인해주십시요.";
+			}
 
 	        return $this->c->response->withJson($data, 200);
 	    }
@@ -127,7 +125,6 @@
                 }
                 
                 return $this->c->response->withJson($data, 200);
-                
             } else {
                 $data['res'] = false;
                 $data['msg'] = "본인만 수정이 가능합니다.";
@@ -142,10 +139,6 @@
 	    */
 	    public function deleteBoard ($request, $response, $args)
 	    {
-
-	        
-	        $is_login = $this->is_login();    
-	        
 	        $idx = $args['idx'];
 	        $idx_result = $this->select_board($idx);
 	         	
@@ -164,14 +157,12 @@
                     $data['res'] = false;
                     $data['msg'] = "삭제에 실패하였습니다.";
                 }
-
                 return $this->c->response->withJson($data, 200);
+				
             } else {
                 $data['res'] = false;
                 $data['msg'] = "본인만 삭제가 가능합니다.";
                 return $this->c->response->withJson($data, 401);                
             }    
-	        
-	                    
 	    }
 	}
