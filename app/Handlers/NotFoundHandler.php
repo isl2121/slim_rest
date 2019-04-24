@@ -7,13 +7,6 @@
 	
 	class NotFoundHandler extends AbstractHandler
 	{
-		protected $view;
-		
-		public function __construct()
-		{
-			
-		}
-		
 		public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
 		{
 			$ouput = $this->renderNotFoundJson($response);
