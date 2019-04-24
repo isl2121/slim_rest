@@ -51,11 +51,11 @@ $container['db'] = function ($container) use ($capsule){
 
 
 # 유저 생성, 조회->로그인, 수정 | 과제에서 유저 삭제에 대한 요청이 없어 제작 안함
-require __DIR__ .'/../routes/user/index.php';
+require __DIR__ .'/../routes/user_route.php';
 
 
 
 # 게시물 페이지 조회, 단일 게시물 조회, 게시물 등록, 게시물 수정, 게시물 삭제
-require __DIR__ .'/../routes/board/index.php';
+require __DIR__ .'/../routes/board_route.php';
 
 $app->run();
