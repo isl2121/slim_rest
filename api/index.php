@@ -12,7 +12,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/src/config.php';
+require __DIR__ . '/config.php';
 
 
 $app = new \Slim\App($settings);
